@@ -1,0 +1,32 @@
+# Only the public datasets are tracked
+data/*
+!data/03_extracted/
+data/03_extracted/*
+!data/03_extracted/method_level_single_merged.json
+!data/05_datasets/
+!data/05_datasets/**
+
+# Paper, analysis, review, and temporary artifacts stay local
+RQ/
+rebuttal/
+paper/
+tmp/
+runs/
+
+# Python caches and test caches
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+
+# Virtual environments and local secrets
+.env
+.venv/
+venv/
+env/
+ENV/
+
+# OS and editor files
+.DS_Store
+.vscode/
+.idea/

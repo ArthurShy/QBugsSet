@@ -1,0 +1,654 @@
+{
+  "schema_version": 14,
+  "model_name": "gpt-5.3",
+  "dataset_name": "dataset_cirq_gpt53_nine",
+  "repair_level": "function",
+  "prompt_input_scope": "file",
+  "result_representation": [
+    "raw_output",
+    "parsed_output",
+    "post_process",
+    "evaluation"
+  ],
+  "total_samples": 9,
+  "successful_samples": 9,
+  "failed_samples": 0,
+  "metrics": {
+    "valid_repair_rate": 1.0,
+    "function_hit_rate": 1.0,
+    "avg_function_jaccard": 0.9444444444444444,
+    "function_exact_match_rate": 0.8888888888888888,
+    "line_hit_rate": 1.0,
+    "avg_line_jaccard": 0.9444444444444444,
+    "line_exact_match_rate": 0.8888888888888888,
+    "avg_patch_similarity": 0.9750828207269405,
+    "exact_fixed_match_rate": 1.0
+  },
+  "diagnostics": {
+    "block_parse_rate": 1.0,
+    "edit_parse_rate": 1.0,
+    "search_hit_rate": 1.0,
+    "unique_hit_rate": 1.0,
+    "apply_rate": 1.0,
+    "non_empty_edit_rate": 1.0,
+    "avg_edit_count": 1.1111111111111112
+  },
+  "token_usage": {
+    "prompt_tokens": 23202,
+    "completion_tokens": 1307,
+    "total_tokens": 24509
+  },
+  "details": [
+    {
+      "id": "7123",
+      "success": true,
+      "framework": "cirq",
+      "repository": "iqm-finland/cirq-on-iqm",
+      "commit_sha": "a2d09dab583434c89f569e711ac35085ec371342",
+      "parent_file_path": "src/cirq_iqm/iqm_device.py",
+      "function_name": "IQMDevice.map_circuit",
+      "repair_level": "function",
+      "repair_reason": null,
+      "response_time": 2.213593006134033,
+      "token_usage": {
+        "prompt_tokens": 4553,
+        "completion_tokens": 140,
+        "total_tokens": 4693
+      },
+      "finish_reason": null,
+      "error": null,
+      "prompt_input_scope": "file",
+      "raw_output": "```python\n<<<<<<< SEARCH\n                idx = int(re.search(r'\\D*(\\d+)?\\D*', qubit.name).group(1))\n                return self.qubits[idx]\n=======\n                idx = int(re.search(r'\\D*(\\d+)?\\D*', qubit.name).group(1))\n                return self.qubits[idx - 1]\n>>>>>>> REPLACE\n```",
+      "parsed_output": {
+        "format_valid": true,
+        "edit_parse_success": true,
+        "edit_count": 1,
+        "generated_edits": [
+          {
+            "search": "                idx = int(re.search(r'\\D*(\\d+)?\\D*', qubit.name).group(1))\n                return self.qubits[idx]",
+            "replace": "                idx = int(re.search(r'\\D*(\\d+)?\\D*', qubit.name).group(1))\n                return self.qubits[idx - 1]"
+          }
+        ]
+      },
+      "post_process": {
+        "edited_file": "src/cirq_iqm/iqm_device.py",
+        "apply_success": true,
+        "search_hit_success": true,
+        "unique_hit_success": true,
+        "non_empty_edit": true,
+        "changed": true,
+        "syntax_valid": true,
+        "empty_line_only": false
+      },
+      "evaluation": {
+        "valid_edit": true,
+        "exact_match": true,
+        "exact_fixed_match": true,
+        "patch_similarity": 1.0,
+        "fixed_code_similarity": 1.0,
+        "function_hit": true,
+        "function_jaccard": 1.0,
+        "function_exact_match": true,
+        "line_hit": true,
+        "line_jaccard": 1.0,
+        "line_exact_match": true,
+        "predicted_functions": [
+          "IQMDevice.map_circuit"
+        ],
+        "reference_functions": [
+          "IQMDevice.map_circuit"
+        ],
+        "predicted_changed_lines": [
+          138
+        ],
+        "reference_changed_lines": [
+          138
+        ]
+      }
+    },
+    {
+      "id": "7051",
+      "success": true,
+      "framework": "cirq",
+      "repository": "00mjk/cirq-superstaq",
+      "commit_sha": "38b0356e2f01f96efe31e1020a7f4bb9cdf77c45",
+      "parent_file_path": "cirq_superstaq/superstaq_client.py",
+      "function_name": "_SuperstaQClient.warehouse",
+      "repair_level": "function",
+      "repair_reason": null,
+      "response_time": 3.186710834503174,
+      "token_usage": {
+        "prompt_tokens": 3268,
+        "completion_tokens": 114,
+        "total_tokens": 3382
+      },
+      "finish_reason": null,
+      "error": null,
+      "prompt_input_scope": "file",
+      "raw_output": "```python\n<<<<<<< SEARCH\n        def request() -> requests.Response:\n            return requests.post(\n                f\"{self.url}/warehouse\",\n                headers=self.headers,\n                json=json_dict,\n            )\n=======\n        def request() -> requests.Response:\n            return requests.post(\n                f\"{self.url}/warehouse\",\n                headers=self.headers,\n                json=json_dict,\n            )\n\n        return self._make_request(request).json()\n>>>>>>> REPLACE\n```",
+      "parsed_output": {
+        "format_valid": true,
+        "edit_parse_success": true,
+        "edit_count": 1,
+        "generated_edits": [
+          {
+            "search": "        def request() -> requests.Response:\n            return requests.post(\n                f\"{self.url}/warehouse\",\n                headers=self.headers,\n                json=json_dict,\n            )",
+            "replace": "        def request() -> requests.Response:\n            return requests.post(\n                f\"{self.url}/warehouse\",\n                headers=self.headers,\n                json=json_dict,\n            )\n\n        return self._make_request(request).json()"
+          }
+        ]
+      },
+      "post_process": {
+        "edited_file": "cirq_superstaq/superstaq_client.py",
+        "apply_success": true,
+        "search_hit_success": true,
+        "unique_hit_success": true,
+        "non_empty_edit": true,
+        "changed": true,
+        "syntax_valid": true,
+        "empty_line_only": false
+      },
+      "evaluation": {
+        "valid_edit": true,
+        "exact_match": false,
+        "exact_fixed_match": true,
+        "patch_similarity": 0.7781094527363184,
+        "fixed_code_similarity": 0.9999180999180999,
+        "function_hit": true,
+        "function_jaccard": 0.5,
+        "function_exact_match": false,
+        "line_hit": true,
+        "line_jaccard": 0.5,
+        "line_exact_match": false,
+        "predicted_functions": [
+          "_SuperstaQClient.warehouse"
+        ],
+        "reference_functions": [
+          "_SuperstaQClient.aqt_upload_configs",
+          "_SuperstaQClient.warehouse"
+        ],
+        "predicted_changed_lines": [
+          231
+        ],
+        "reference_changed_lines": [
+          231,
+          240
+        ]
+      }
+    },
+    {
+      "id": "7144",
+      "success": true,
+      "framework": "cirq",
+      "repository": "openweave/cirque",
+      "commit_sha": "1ac6e604ddea7488dd4433e4965eab575f4d74ad",
+      "parent_file_path": "cirque/home/home.py",
+      "function_name": "CirqueHome.__make_xvnc_capability",
+      "repair_level": "function",
+      "repair_reason": null,
+      "response_time": 3.2915499210357666,
+      "token_usage": {
+        "prompt_tokens": 2878,
+        "completion_tokens": 90,
+        "total_tokens": 2968
+      },
+      "finish_reason": null,
+      "error": null,
+      "prompt_input_scope": "file",
+      "raw_output": "```python\n<<<<<<< SEARCH\n        docker_display_id = device_confing['docker_display_id'] \\\n            if 'docker_display_id' in device_config else 0\n=======\n        docker_display_id = device_config['docker_display_id'] \\\n            if 'docker_display_id' in device_config else 0\n>>>>>>> REPLACE\n```",
+      "parsed_output": {
+        "format_valid": true,
+        "edit_parse_success": true,
+        "edit_count": 1,
+        "generated_edits": [
+          {
+            "search": "        docker_display_id = device_confing['docker_display_id'] \\\n            if 'docker_display_id' in device_config else 0",
+            "replace": "        docker_display_id = device_config['docker_display_id'] \\\n            if 'docker_display_id' in device_config else 0"
+          }
+        ]
+      },
+      "post_process": {
+        "edited_file": "cirque/home/home.py",
+        "apply_success": true,
+        "search_hit_success": true,
+        "unique_hit_success": true,
+        "non_empty_edit": true,
+        "changed": true,
+        "syntax_valid": true,
+        "empty_line_only": false
+      },
+      "evaluation": {
+        "valid_edit": true,
+        "exact_match": true,
+        "exact_fixed_match": true,
+        "patch_similarity": 1.0,
+        "fixed_code_similarity": 1.0,
+        "function_hit": true,
+        "function_jaccard": 1.0,
+        "function_exact_match": true,
+        "line_hit": true,
+        "line_jaccard": 1.0,
+        "line_exact_match": true,
+        "predicted_functions": [
+          "CirqueHome.__make_xvnc_capability"
+        ],
+        "reference_functions": [
+          "CirqueHome.__make_xvnc_capability"
+        ],
+        "predicted_changed_lines": [
+          171
+        ],
+        "reference_changed_lines": [
+          171
+        ]
+      }
+    },
+    {
+      "id": "7139",
+      "success": true,
+      "framework": "cirq",
+      "repository": "martina-pauer/cirquex",
+      "commit_sha": "ac88d6b48e0a4755633eed7ac9871158e8014b6a",
+      "parent_file_path": "view.py",
+      "function_name": "<global>",
+      "repair_level": "function",
+      "repair_reason": null,
+      "response_time": 3.368201971054077,
+      "token_usage": {
+        "prompt_tokens": 1042,
+        "completion_tokens": 75,
+        "total_tokens": 1117
+      },
+      "finish_reason": null,
+      "error": null,
+      "prompt_input_scope": "file",
+      "raw_output": "```python\n<<<<<<< SEARCH\nos.system('rm -R __pyacache__')\n=======\nos.system('rm -R __pycache__')\n>>>>>>> REPLACE\n```",
+      "parsed_output": {
+        "format_valid": true,
+        "edit_parse_success": true,
+        "edit_count": 1,
+        "generated_edits": [
+          {
+            "search": "os.system('rm -R __pyacache__')",
+            "replace": "os.system('rm -R __pycache__')"
+          }
+        ]
+      },
+      "post_process": {
+        "edited_file": "view.py",
+        "apply_success": true,
+        "search_hit_success": true,
+        "unique_hit_success": true,
+        "non_empty_edit": true,
+        "changed": true,
+        "syntax_valid": true,
+        "empty_line_only": false
+      },
+      "evaluation": {
+        "valid_edit": true,
+        "exact_match": true,
+        "exact_fixed_match": true,
+        "patch_similarity": 1.0,
+        "fixed_code_similarity": 1.0,
+        "function_hit": true,
+        "function_jaccard": 1.0,
+        "function_exact_match": true,
+        "line_hit": true,
+        "line_jaccard": 1.0,
+        "line_exact_match": true,
+        "predicted_functions": [
+          "<global>"
+        ],
+        "reference_functions": [
+          "<global>"
+        ],
+        "predicted_changed_lines": [
+          37
+        ],
+        "reference_changed_lines": [
+          37
+        ]
+      }
+    },
+    {
+      "id": "7179",
+      "success": true,
+      "framework": "cirq",
+      "repository": "scaleway/cirq-scaleway",
+      "commit_sha": "ee00b3bf5d9a648c83d7771d78a5bbcaf6852467",
+      "parent_file_path": "cirq_scaleway/scaleway_device.py",
+      "function_name": "ScalewayDevice.__repr__",
+      "repair_level": "function",
+      "repair_reason": null,
+      "response_time": 3.4650092124938965,
+      "token_usage": {
+        "prompt_tokens": 1542,
+        "completion_tokens": 159,
+        "total_tokens": 1701
+      },
+      "finish_reason": null,
+      "error": null,
+      "prompt_input_scope": "file",
+      "raw_output": "```python\n<<<<<<< SEARCH\n    def __repr__(self) -> str:\n        return f\"<ScalewayDevice(name={self.__name},num_qubits={self.__num_qubits},platform_id={self.id})>\"\n=======\n    def __repr__(self) -> str:\n        return f\"<ScalewayDevice(name={self.name},num_qubits={self.num_qubits},platform_id={self.id})>\"\n>>>>>>> REPLACE\n```",
+      "parsed_output": {
+        "format_valid": true,
+        "edit_parse_success": true,
+        "edit_count": 1,
+        "generated_edits": [
+          {
+            "search": "    def __repr__(self) -> str:\n        return f\"<ScalewayDevice(name={self.__name},num_qubits={self.__num_qubits},platform_id={self.id})>\"",
+            "replace": "    def __repr__(self) -> str:\n        return f\"<ScalewayDevice(name={self.name},num_qubits={self.num_qubits},platform_id={self.id})>\""
+          }
+        ]
+      },
+      "post_process": {
+        "edited_file": "cirq_scaleway/scaleway_device.py",
+        "apply_success": true,
+        "search_hit_success": true,
+        "unique_hit_success": true,
+        "non_empty_edit": true,
+        "changed": true,
+        "syntax_valid": true,
+        "empty_line_only": false
+      },
+      "evaluation": {
+        "valid_edit": true,
+        "exact_match": false,
+        "exact_fixed_match": true,
+        "patch_similarity": 0.9976359338061466,
+        "fixed_code_similarity": 0.9997319034852546,
+        "function_hit": true,
+        "function_jaccard": 1.0,
+        "function_exact_match": true,
+        "line_hit": true,
+        "line_jaccard": 1.0,
+        "line_exact_match": true,
+        "predicted_functions": [
+          "ScalewayDevice.__repr__"
+        ],
+        "reference_functions": [
+          "ScalewayDevice.__repr__"
+        ],
+        "predicted_changed_lines": [
+          33
+        ],
+        "reference_changed_lines": [
+          33
+        ]
+      }
+    },
+    {
+      "id": "7289",
+      "success": true,
+      "framework": "cirq",
+      "repository": "tensorflow/quantum",
+      "commit_sha": "e578c38c97e89de9dd12446e52a0ed9facbf4df2",
+      "parent_file_path": "tensorflow_quantum/python/layers/high_level/pqc.py",
+      "function_name": "PQC.__init__",
+      "repair_level": "function",
+      "repair_reason": null,
+      "response_time": 3.5433247089385986,
+      "token_usage": {
+        "prompt_tokens": 3778,
+        "completion_tokens": 134,
+        "total_tokens": 3912
+      },
+      "finish_reason": null,
+      "error": null,
+      "prompt_input_scope": "file",
+      "raw_output": "```python\n<<<<<<< SEARCH\n        not_default = backend is not 'noiseless'\n=======\n        not_default = backend != 'noiseless'\n>>>>>>> REPLACE\n```",
+      "parsed_output": {
+        "format_valid": true,
+        "edit_parse_success": true,
+        "edit_count": 1,
+        "generated_edits": [
+          {
+            "search": "        not_default = backend is not 'noiseless'",
+            "replace": "        not_default = backend != 'noiseless'"
+          }
+        ]
+      },
+      "post_process": {
+        "edited_file": "tensorflow_quantum/python/layers/high_level/pqc.py",
+        "apply_success": true,
+        "search_hit_success": true,
+        "unique_hit_success": true,
+        "non_empty_edit": true,
+        "changed": true,
+        "syntax_valid": true,
+        "empty_line_only": false
+      },
+      "evaluation": {
+        "valid_edit": true,
+        "exact_match": true,
+        "exact_fixed_match": true,
+        "patch_similarity": 1.0,
+        "fixed_code_similarity": 1.0,
+        "function_hit": true,
+        "function_jaccard": 1.0,
+        "function_exact_match": true,
+        "line_hit": true,
+        "line_jaccard": 1.0,
+        "line_exact_match": true,
+        "predicted_functions": [
+          "PQC.__init__"
+        ],
+        "reference_functions": [
+          "PQC.__init__"
+        ],
+        "predicted_changed_lines": [
+          233
+        ],
+        "reference_changed_lines": [
+          233
+        ]
+      }
+    },
+    {
+      "id": "7190",
+      "success": true,
+      "framework": "cirq",
+      "repository": "sdual/cirq-custom",
+      "commit_sha": "5fb05f9f07edac7f5de9b973a2d800836ec9a729",
+      "parent_file_path": "cirq_custom/gate/su.py",
+      "function_name": "append_su4",
+      "repair_level": "function",
+      "repair_reason": null,
+      "response_time": 3.8341972827911377,
+      "token_usage": {
+        "prompt_tokens": 1588,
+        "completion_tokens": 207,
+        "total_tokens": 1795
+      },
+      "finish_reason": null,
+      "error": null,
+      "prompt_input_scope": "file",
+      "raw_output": "```python\n<<<<<<< SEARCH\n    append_su2(circuit, qubit2, k1_params[3], k1_params[4], k1_params[6])\n=======\n    append_su2(circuit, qubit2, k1_params[3], k1_params[4], k1_params[5])\n>>>>>>> REPLACE\n```\n\n```python\n<<<<<<< SEARCH\n    append_su2(circuit, qubit2, k2_params[3], k2_params[4], k2_params[6])\n=======\n    append_su2(circuit, qubit2, k2_params[3], k2_params[4], k2_params[5])\n>>>>>>> REPLACE\n```",
+      "parsed_output": {
+        "format_valid": true,
+        "edit_parse_success": true,
+        "edit_count": 2,
+        "generated_edits": [
+          {
+            "search": "    append_su2(circuit, qubit2, k1_params[3], k1_params[4], k1_params[6])",
+            "replace": "    append_su2(circuit, qubit2, k1_params[3], k1_params[4], k1_params[5])"
+          },
+          {
+            "search": "    append_su2(circuit, qubit2, k2_params[3], k2_params[4], k2_params[6])",
+            "replace": "    append_su2(circuit, qubit2, k2_params[3], k2_params[4], k2_params[5])"
+          }
+        ]
+      },
+      "post_process": {
+        "edited_file": "cirq_custom/gate/su.py",
+        "apply_success": true,
+        "search_hit_success": true,
+        "unique_hit_success": true,
+        "non_empty_edit": true,
+        "changed": true,
+        "syntax_valid": true,
+        "empty_line_only": false
+      },
+      "evaluation": {
+        "valid_edit": true,
+        "exact_match": true,
+        "exact_fixed_match": true,
+        "patch_similarity": 1.0,
+        "fixed_code_similarity": 1.0,
+        "function_hit": true,
+        "function_jaccard": 1.0,
+        "function_exact_match": true,
+        "line_hit": true,
+        "line_jaccard": 1.0,
+        "line_exact_match": true,
+        "predicted_functions": [
+          "append_su4"
+        ],
+        "reference_functions": [
+          "append_su4"
+        ],
+        "predicted_changed_lines": [
+          70,
+          77
+        ],
+        "reference_changed_lines": [
+          70,
+          77
+        ]
+      }
+    },
+    {
+      "id": "7288",
+      "success": true,
+      "framework": "cirq",
+      "repository": "tensorflow/quantum",
+      "commit_sha": "e578c38c97e89de9dd12446e52a0ed9facbf4df2",
+      "parent_file_path": "tensorflow_quantum/python/layers/high_level/controlled_pqc.py",
+      "function_name": "ControlledPQC.__init__",
+      "repair_level": "function",
+      "repair_reason": null,
+      "response_time": 4.964706897735596,
+      "token_usage": {
+        "prompt_tokens": 3425,
+        "completion_tokens": 165,
+        "total_tokens": 3590
+      },
+      "finish_reason": null,
+      "error": null,
+      "prompt_input_scope": "file",
+      "raw_output": "```python\n<<<<<<< SEARCH\n        not_default = backend is not 'noiseless'\n        not_default &= backend is not None  # legacy backend=None support.\n=======\n        not_default = backend != 'noiseless'\n        not_default &= backend is not None  # legacy backend=None support.\n>>>>>>> REPLACE\n```",
+      "parsed_output": {
+        "format_valid": true,
+        "edit_parse_success": true,
+        "edit_count": 1,
+        "generated_edits": [
+          {
+            "search": "        not_default = backend is not 'noiseless'\n        not_default &= backend is not None  # legacy backend=None support.",
+            "replace": "        not_default = backend != 'noiseless'\n        not_default &= backend is not None  # legacy backend=None support."
+          }
+        ]
+      },
+      "post_process": {
+        "edited_file": "tensorflow_quantum/python/layers/high_level/controlled_pqc.py",
+        "apply_success": true,
+        "search_hit_success": true,
+        "unique_hit_success": true,
+        "non_empty_edit": true,
+        "changed": true,
+        "syntax_valid": true,
+        "empty_line_only": false
+      },
+      "evaluation": {
+        "valid_edit": true,
+        "exact_match": true,
+        "exact_fixed_match": true,
+        "patch_similarity": 1.0,
+        "fixed_code_similarity": 1.0,
+        "function_hit": true,
+        "function_jaccard": 1.0,
+        "function_exact_match": true,
+        "line_hit": true,
+        "line_jaccard": 1.0,
+        "line_exact_match": true,
+        "predicted_functions": [
+          "ControlledPQC.__init__"
+        ],
+        "reference_functions": [
+          "ControlledPQC.__init__"
+        ],
+        "predicted_changed_lines": [
+          218
+        ],
+        "reference_changed_lines": [
+          218
+        ]
+      }
+    },
+    {
+      "id": "7141",
+      "success": true,
+      "framework": "cirq",
+      "repository": "martina-pauer/cirquex",
+      "commit_sha": "e03cf2bd86d32fbe325b531e74b3c4b3d5725937",
+      "parent_file_path": "view.py",
+      "function_name": "<global>",
+      "repair_level": "function",
+      "repair_reason": null,
+      "response_time": 9.383072853088379,
+      "token_usage": {
+        "prompt_tokens": 1128,
+        "completion_tokens": 223,
+        "total_tokens": 1351
+      },
+      "finish_reason": null,
+      "error": null,
+      "prompt_input_scope": "file",
+      "raw_output": "```python\n<<<<<<< SEARCH\nfor line in save.readlines():\n    copy.write(line.__str__().replace(f'start = \"{(test_number - 1).__str__()}', f'start = {test_number.__str__()}'))\n=======\nfor line in lines:\n    copy.write(line.__str__().replace(f'start = \"{(test_number - 1).__str__()}', f'start = {test_number.__str__()}'))\n>>>>>>> REPLACE\n```",
+      "parsed_output": {
+        "format_valid": true,
+        "edit_parse_success": true,
+        "edit_count": 1,
+        "generated_edits": [
+          {
+            "search": "for line in save.readlines():\n    copy.write(line.__str__().replace(f'start = \"{(test_number - 1).__str__()}', f'start = {test_number.__str__()}'))",
+            "replace": "for line in lines:\n    copy.write(line.__str__().replace(f'start = \"{(test_number - 1).__str__()}', f'start = {test_number.__str__()}'))"
+          }
+        ]
+      },
+      "post_process": {
+        "edited_file": "view.py",
+        "apply_success": true,
+        "search_hit_success": true,
+        "unique_hit_success": true,
+        "non_empty_edit": true,
+        "changed": true,
+        "syntax_valid": true,
+        "empty_line_only": false
+      },
+      "evaluation": {
+        "valid_edit": true,
+        "exact_match": true,
+        "exact_fixed_match": true,
+        "patch_similarity": 1.0,
+        "fixed_code_similarity": 1.0,
+        "function_hit": true,
+        "function_jaccard": 1.0,
+        "function_exact_match": true,
+        "line_hit": true,
+        "line_jaccard": 1.0,
+        "line_exact_match": true,
+        "predicted_functions": [
+          "<global>"
+        ],
+        "reference_functions": [
+          "<global>"
+        ],
+        "predicted_changed_lines": [
+          39
+        ],
+        "reference_changed_lines": [
+          39
+        ]
+      }
+    }
+  ]
+}
